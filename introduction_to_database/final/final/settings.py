@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -46,7 +46,7 @@ USE_I18N = True
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -156,3 +156,33 @@ LOGGING = {
         },
     }
 }
+
+try:
+  import local_settings
+except ImportError:
+  print """
+    -------------------------------------------------------------------------
+    You need to create a local_settings.py file which needs to contain at least
+    database connection information.
+
+    Copy local_settings_example.py to local_settings.py and edit it.
+    -------------------------------------------------------------------------
+    """
+  import sys
+  sys.exit(1)
+else:
+  # Import any symbols that begin with A-Z. Append to lists any symbols that
+  # begin with "EXTRA_".
+  import re
+  for attr in dir(local_settings):
+    match = re.search('^EXTRA_(\w+)', attr)
+    if match:
+      name = match.group(1)
+      value = getattr(local_settings, attr)
+      try:
+        globals()[name] += value
+      except KeyError:
+        globals()[name] = value
+    elif re.search('^[A-Z]', attr):
+      globals()[attr] = getattr(local_settings, attr)
+
