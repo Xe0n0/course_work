@@ -48,10 +48,10 @@ class Restaurant(models.Model):
 
 class Rate(models.Model):
     flavor = models.IntegerField(default=0, blank=False)
-    service = model.IntegerField(default=0, blank=False)
-    environment = model.IntegerField(default=0, blank=False)
-    star = model.IntegerField(default=0, blank=False)
-    comment = model.TextField(blank=True)
+    service = models.IntegerField(default=0, blank=False)
+    environment = models.IntegerField(default=0, blank=False)
+    star = models.IntegerField(default=0, blank=False)
+    comment = models.TextField(blank=True)
 
 from django.forms import ModelForm
 # class ShowForm(ModelForm):
