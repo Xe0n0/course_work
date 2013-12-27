@@ -4,8 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'final.views.home', name='home'),
+    url(r'^$', 'final.views.home', name='home'),
     # url(r'^final/', include('final.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
