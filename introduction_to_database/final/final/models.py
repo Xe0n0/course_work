@@ -22,22 +22,6 @@ def validate_space(value):
     if value[0] == ' ' or value[-1] == ' ' :
         raise ValidationError('should not begin or end with space')
 
-def validate_sections(value):
-    sec = value.split();
-    if len(sec) < 3:
-        raise ValidationError('can not be splitted to 3 sections')
-    validate_space(value)
-    
-def validate_tags(value):
-    tags = value.strip();
-    if len(tags) < 1:
-        raise ValidationError('tags should not only contain space')
-    validate_space(value)
-
-def validate_url(value):
-    if p_url.match(value) is None:
-        raise ValidationError('invalid video url')
-
 class Restaurant(models.Model):
     name = models.CharField(max_length=255, blank=False)
     cuisine = models.CharField(max_length=255, blank=True)
@@ -54,6 +38,14 @@ class Rate(models.Model):
     environment = models.IntegerField(default=0, blank=False)
     star = models.IntegerField(default=0, blank=False)
     comment = models.TextField(blank=True)
+
+class Overall(models.Model):
+    restaurant = models.OneToOneField(Restaurant, primary_key=True)
+    total = models.FloatField()
+    count = models.IntegerField()
+
+    class Meta:
+        managed = False
 
 from django.forms import ModelForm
 # class ShowForm(ModelForm):
