@@ -99,7 +99,6 @@ from django.forms import ModelForm
 #     def has_delete_permission(self, request, obj=None):
 #         return False
 
-
-# admin.site.register(User)
-# admin.site.register(Show, ShowAdmin)
+admin.site.register(Restaurant)
+admin.site.register(Rate)
 # admin.site.disable_action('delete_selected')
