@@ -1,1 +1,3 @@
 {% extends 'base.html' %}
+{% block js%}<script src="{{ S }}/bower_components/bootstrap-paginator/src/bootstrap-paginator.js"></script><script src="{{ S }}/js/index.js"></script>{% endblock %}
+{% block container %}<div id="result"><div class="panel panel-default"><div id="heading" class="panel-heading"></div><div id="content" class="panel-body"></div><div class="panel-footer"><ul id="pager"></ul></div></div></div>{% endblock %}
