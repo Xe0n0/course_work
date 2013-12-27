@@ -47,6 +47,8 @@ class Restaurant(models.Model):
     opentime = models.CharField(max_length=75, blank=False)
 
 class Rate(models.Model):
+    user = models.ForeignKey(User)
+    restaurant = models.ForeignKey(Restaurant)
     flavor = models.IntegerField(default=0, blank=False)
     service = models.IntegerField(default=0, blank=False)
     environment = models.IntegerField(default=0, blank=False)
