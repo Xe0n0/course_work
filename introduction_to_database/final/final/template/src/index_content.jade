@@ -1,0 +1,7 @@
+table.table.table-hover
+  {% for item in array %}
+  tr.row
+    td.col-md-6
+      a {{ item.name }}
+    td.col-md-4 {{ item.location }}
+  {% endfor %}

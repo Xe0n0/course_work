@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block css %}
+link(href="{{ S }}/css/login.css", rel="stylesheet")
+{% endblock %}
+{% block container %}
+form.form-signin(method='POST', role='form')
+    h2.form-signin-heading Please sign in
+    input.form-control(name='username', type='text', placeholder='Username', required='', autofocus='')
+    input.form-control(name='password', type='password', placeholder='Password', required='')
+    label.checkbox
+      input(type='checkbox', value='remember-me')
+      | Remember me
+    button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+{% endblock %}

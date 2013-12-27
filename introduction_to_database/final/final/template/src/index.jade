@@ -1,1 +1,15 @@
 {% extends 'base.html' %}
+
+{% block js%}
+script(src="{{ S }}/bower_components/bootstrap-paginator/src/bootstrap-paginator.js")
+script(src="{{ S }}/js/index.js")
+{% endblock %}
+
+{% block container %}
+#result
+  .panel.panel-default
+    .panel-heading#heading
+    .panel-body#content
+    .panel-footer
+      ul#pager
+{% endblock %}
