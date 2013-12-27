@@ -5,6 +5,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'final.views.home', name='home'),
+    url(r'^login', 'final.views.login', name='login'),
+    url(r'^eatings/top.json', 'final.views.top', name='top'),
     # url(r'^final/', include('final.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
