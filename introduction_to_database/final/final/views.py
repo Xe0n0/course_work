@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as django_login
 from django.template.loader import get_template
 from django.template import Context
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 
 
 from models import Rate, Restaurant as Rest
@@ -123,8 +123,16 @@ class TopView(AjaxListView):
                 left join final_restaurant on restaurant_id = id
                 ORDER BY total DESC LIMIT 10''')
         
-class HotView(AjaxListView):
+class HotView(TemplateView):
+    template_name = "hot.html"
+
+class HotListView(AjaxListView):
     template = "index_content.html"
+
+    def query_set(self):
+      return Rest.objects.raw('''select * from final_restaurant
+        left join final_overall on restaurant_id = id
+        where count > (select avg(count) from final_overall) order by count desc''')
 
 class NearbyView(AjaxListView):
     pass
