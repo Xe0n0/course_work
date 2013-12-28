@@ -30,6 +30,9 @@ class Restaurant(models.Model):
     phone = models.CharField(max_length=75, blank=True)
     opentime = models.CharField(max_length=75, blank=False)
 
+    def __unicode__(self):
+        return '{} {} {}'.format(self.id, self.name, self.location)
+
 class Rate(models.Model):
     user = models.ForeignKey(User)
     restaurant = models.ForeignKey(Restaurant)
@@ -42,6 +45,9 @@ class Rate(models.Model):
 class Overall(models.Model):
     restaurant = models.OneToOneField(Restaurant, primary_key=True)
     total = models.FloatField()
+    flavor = models.FloatField()
+    service = models.FloatField()
+    environment = models.FloatField()
     count = models.IntegerField()
 
     class Meta:
