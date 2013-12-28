@@ -1,7 +1,12 @@
 table.table.table-hover
+  tr.row
+    th.col-md-4 Restaurant
+    th.col-md-4 Address
+    th.col-md-2 Overall Rating
   {% for item in array %}
   tr.row
-    td.col-md-6
-      a {{ item.name }}
+    td.col-md-4
+      a(href="{{ item.get_absolute_url }}") {{ item.name }}
     td.col-md-4 {{ item.location }}
+    td.col-md-2 {{ item.overall.total }}
   {% endfor %}
