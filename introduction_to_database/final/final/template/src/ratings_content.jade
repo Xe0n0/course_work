@@ -1,0 +1,18 @@
+table.table.table-striped
+  tr
+    th.col-md-4 用户
+    th.col-md-2 评级
+    th.col-md-2 口味
+    th.col-md-2 服务
+    th.col-md-2 环境
+  {% for item in array %}
+  tr
+    td.col-md-4 {{ item.user.last_name }}{{ item.user.first_name }}
+    td.col-md-2 {{ item.star }}
+    td.col-md-2 {{ item.flavor }}
+    td.col-md-2 {{ item.service }}
+    td.col-md-2 {{ item.environment }}
+  tr
+    td(colspan='5') {{ item.comment }}
+
+  {% endfor %}
