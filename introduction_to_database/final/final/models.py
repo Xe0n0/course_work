@@ -45,6 +45,7 @@ class Rate(models.Model):
 class Overall(models.Model):
     restaurant = models.OneToOneField(Restaurant, primary_key=True)
     total = models.FloatField()
+    star = models.FloatField()
     flavor = models.FloatField()
     service = models.FloatField()
     environment = models.FloatField()
