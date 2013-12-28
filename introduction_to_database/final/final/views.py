@@ -63,11 +63,16 @@ def top(request):
       'pagecount': pagecount,
   }
 
+from django.views.generic.detail import DetailView
+class RestView(DetailView):
+    model = Rest
+    template_name = 'rest_detail.html'
 
 class AjaxListView(View):
 
     template = "index_content.html"
     per = 20.0
+    kwargs = {}
 
     def query_set(self):
         return Rest.objects.all()
@@ -103,6 +108,8 @@ class AjaxListView(View):
     def post(self, request, *args, **kwargs):
 
 
+        self.kwargs = kwargs
+
         content = self.get_page_context(request)
 
         return HttpResponse(dumps(content, ensure_ascii=False, separators=(',',':')),
@@ -121,3 +128,10 @@ class HotView(AjaxListView):
 
 class NearbyView(AjaxListView):
     pass
+
+class RatingsListView(AjaxListView):
+    template = "ratings_content.html"
+
+    def query_set(self):
+      return Rest.objects.get(id = self.kwargs['pk']).rate_set.all()
+
