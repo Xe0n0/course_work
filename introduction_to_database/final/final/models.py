@@ -30,6 +30,10 @@ class Restaurant(models.Model):
     phone = models.CharField(max_length=75, blank=True)
     opentime = models.CharField(max_length=75, blank=False)
 
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('rest', args=[str(self.id)])
+
     def __unicode__(self):
         return '{} {} {}'.format(self.id, self.name, self.location)
 
