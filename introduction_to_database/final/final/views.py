@@ -1,4 +1,5 @@
 import sys
+from json import dumps
 
 from django.shortcuts import *
 from django.template import RequestContext
@@ -7,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as django_login
 from django.template.loader import get_template
 from django.template import Context
-from json import dumps
+from django.views.generic import View
+
 
 from models import Rate, Restaurant as Rest
 
@@ -60,3 +62,58 @@ def top(request):
       'content': content,
       'pagecount': pagecount,
   }
+
+
+class AjaxListView(View):
+
+    template = "index_content.html"
+    per = 20
+
+    def query_set(self):
+        return Rest.objects.all()
+    
+    def get_page_context(self, request):
+        
+        array = self.query_set()
+
+        try:
+            pagecount = array.count() / self.per
+        except:
+            pagecount = len(list(array))
+
+        pageid = request.POST.get('pageid', '1')
+
+        offset = int(pageid) * self.per
+
+        context = { 'array': array[offset - self.per : offset] }
+
+        t = get_template(self.template)
+        content = t.render(Context(context))
+
+        context = {
+            'content': content,
+            'pagecount': pagecount,
+        }
+        return context
+
+    def post(self, request, *args, **kwargs):
+
+
+        content = self.get_page_context(request)
+
+        return HttpResponse(dumps(content, ensure_ascii=False, separators=(',',':')),
+                mimetype="application/json")
+
+class TopView(AjaxListView):
+    template = "index_content.html"
+
+    def query_set(self):
+        return Rest.objects.raw('''SELECT * FROM final_overall
+                left join final_restaurant on restaurant_id = id
+                ORDER BY total DESC LIMIT 10''')
+        
+class HotView(AjaxListView):
+    template = "index_content.html"
+
+class NearbyView(AjaxListView):
+    pass
