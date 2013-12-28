@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
+{% block nav %}
+
+{% endblock %}
 
 {% block js%}
-script.
-  var json_url = '/eatings/top.json';
 
 script(src="{{ S }}/bower_components/bootstrap-paginator/src/bootstrap-paginator.js")
 script(src="{{ S }}/js/index.js")
+
+{% block json_url %}
+
+script.
+  $('li#top').addClass('active')
+  var json_url = '/eatings/top.json';
+
+{% endblock %}
+
+
 {% endblock %}
 
 {% block container %}

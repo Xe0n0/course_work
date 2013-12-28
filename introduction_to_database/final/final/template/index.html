@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
-{% block js%}<script>var json_url = '/eatings/top.json';
-</script><script src="{{ S }}/bower_components/bootstrap-paginator/src/bootstrap-paginator.js"></script><script src="{{ S }}/js/index.js"></script>{% endblock %}
+{% block nav %}
+{% endblock %}
+{% block js%}<script src="{{ S }}/bower_components/bootstrap-paginator/src/bootstrap-paginator.js"></script><script src="{{ S }}/js/index.js"></script>{% block json_url %}<script>$('li#top').addClass('active')
+var json_url = '/eatings/top.json';
+</script>{% endblock %}
+{% endblock %}
 {% block container %}<div id="result"><div class="panel panel-default"><div id="heading" class="panel-heading"></div><div id="content" class="panel-body"></div><div class="panel-footer"><ul id="pager"></ul></div></div></div>{% endblock %}
