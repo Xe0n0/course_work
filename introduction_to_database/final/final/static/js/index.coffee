@@ -2,7 +2,7 @@ pageid = 1
 
 pageClick = (e, oldPage, newPage) ->
     pageid = newPage
-    $.post "/eatings/top.json", { "pageid": newPage }, load_did_success, "json"
+    $.post json_url, { "pageid": newPage }, load_did_success, "json"
 
 
 load_did_success = (json, textStatus, jqXHR) ->

@@ -5,7 +5,7 @@ pageid = 1;
 
 pageClick = function(e, oldPage, newPage) {
   pageid = newPage;
-  return $.post("/eatings/top.json", {
+  return $.post(json_url, {
     "pageid": newPage
   }, load_did_success, "json");
 };
