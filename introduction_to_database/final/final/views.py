@@ -67,7 +67,7 @@ def top(request):
 class AjaxListView(View):
 
     template = "index_content.html"
-    per = 20
+    per = 20.0
 
     def query_set(self):
         return Rest.objects.all()
@@ -79,13 +79,17 @@ class AjaxListView(View):
         try:
             pagecount = array.count() / self.per
         except:
-            pagecount = len(list(array))
+            pagecount = len(list(array)) / self.per
+
+        import math
+
+        pagecount = int(math.ceil(pagecount))
 
         pageid = request.POST.get('pageid', '1')
 
-        offset = int(pageid) * self.per
+        offset = int(pageid) * int(self.per)
 
-        context = { 'array': array[offset - self.per : offset] }
+        context = { 'array': array[offset - int(self.per) : offset] }
 
         t = get_template(self.template)
         content = t.render(Context(context))
