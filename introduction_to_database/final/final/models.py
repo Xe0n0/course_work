@@ -47,6 +47,9 @@ class Rate(models.Model):
     comment = models.TextField(blank=True, default='')
     datetime = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+      ordering = ['-datetime']
+
 class Overall(models.Model):
     restaurant = models.OneToOneField(Restaurant, primary_key=True)
     total = models.FloatField()
