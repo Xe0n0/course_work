@@ -97,10 +97,10 @@ class RateCreate(JSONView):
 
     def get_context(self):
 
-        f = self.form(request.POST)
+        f = self.form(self.request.POST)
         obj = f.save(commit=False)
-        obj.user = request.user
-        r = Rest.objects.get(id = kwargs['pk'])
+        obj.user = self.request.user
+        r = Rest.objects.get(id = self.kwargs['pk'])
         obj.restaurant = r
         err = f.errors
 
