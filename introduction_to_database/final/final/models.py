@@ -44,7 +44,7 @@ class Rate(models.Model):
     service = models.IntegerField(default=0, blank=False)
     environment = models.IntegerField(default=0, blank=False)
     star = models.IntegerField(default=0, blank=False)
-    comment = models.TextField(blank=True)
+    comment = models.TextField(blank=True, default='')
     datetime = models.DateTimeField(auto_now_add=True)
 
 class Overall(models.Model):

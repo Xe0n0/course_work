@@ -27,6 +27,50 @@ table.table.table-bordered
     '地标': 'landmark',
     })
 
+form#rate_form(action='rate/', method='POST', role='form')
+      .form-group
+        .row
+          .col-md-2
+            label.control-label Star
+            select.form-control(name='star', required='', autofocus='', multiple)
+              option(selected='selected') 5
+              option 4
+              option 3
+              option 2
+              option 1
+          .col-md-2
+            label Flavor
+            select.form-control(name='flavor', required='', autofocus='', multiple)
+              option(selected='selected') 5
+              option 4
+              option 3
+              option 2
+              option 1
+          .col-md-2
+            label Service
+            select.form-control(name='service', required='', autofocus='', multiple)
+              option(selected='selected') 5
+              option 4
+              option 3
+              option 2
+              option 1
+          .col-md-2
+            label Environment
+            select.form-control(name='environment', required='', autofocus='', multiple)
+              option(selected='selected') 5
+              option 4
+              option 3
+              option 2
+              option 1
+      .row
+        .col-md-10
+          .form-group
+            textarea.form-control(name='comment', placeholder='I love this one!', autofocus='')
+      .row
+        .col-md-5
+          .form-group
+            button.btn.btn-lg.btn-primary.btn-block(type='submit') Rate Now
+
 #result
   .panel.panel-default
 

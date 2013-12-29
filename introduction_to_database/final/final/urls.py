@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from views import TopView, HotView, HotListView, NearbyView, RestView, RatingsListView
+from views import TopView, HotView, HotListView, NearbyView, RestView, \
+    RatingsListView, RateCreate
 
 admin.autodiscover()
 
@@ -16,6 +17,8 @@ urlpatterns = patterns('',
 
     url(r'^eating/(?P<pk>\d+)/$', RestView.as_view(), name='rest'),
     url(r'^eating/(?P<pk>\d+)/ratings.json$', RatingsListView.as_view()),
+
+    url(r'^eating/(?P<pk>\d+)/rate/$', RateCreate.as_view(), name='rate'),
     # url(r'^final/', include('final.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
