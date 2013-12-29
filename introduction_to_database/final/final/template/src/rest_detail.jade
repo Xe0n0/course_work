@@ -11,6 +11,15 @@ script.
   var json_url = 'ratings.json'
 script(src="{{ S }}bower_components/bootstrap-paginator/src/bootstrap-paginator.js")
 script(src="{{ S }}js/index.js")
+script.
+  form_did_load = function(obj) {
+    if (obj.status == 0) {
+      pageClick(1, null, null);
+    }
+    else {
+    }
+  }
+script(src="{{ S }}js/async_form.js")
 {% endblock %}
 
 {% block container %}
@@ -27,7 +36,7 @@ table.table.table-bordered
     '地标': 'landmark',
     })
 
-form(action='rate/', method='POST', role='form')
+form#rate_form(action='rate/', method='POST', role='form')
       .form-group
         .row
           .col-md-2
