@@ -35,7 +35,7 @@ class Restaurant(models.Model):
         return reverse('rest', args=[str(self.id)])
 
     def __unicode__(self):
-        return '{} {} {}'.format(self.id, self.name, self.location)
+        return u'{} {} {}'.format(self.id, self.name, self.location)
 
 class Rate(models.Model):
     user = models.ForeignKey(User)
