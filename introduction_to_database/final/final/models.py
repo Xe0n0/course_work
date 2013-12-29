@@ -45,6 +45,7 @@ class Rate(models.Model):
     environment = models.IntegerField(default=0, blank=False)
     star = models.IntegerField(default=0, blank=False)
     comment = models.TextField(blank=True)
+    datetime = models.DateTimeField(auto_now_add=True)
 
 class Overall(models.Model):
     restaurant = models.OneToOneField(Restaurant, primary_key=True)
