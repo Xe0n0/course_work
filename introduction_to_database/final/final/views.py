@@ -3,7 +3,7 @@ from json import dumps
 
 from django.shortcuts import *
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as django_login
 from django.template.loader import get_template
@@ -64,63 +64,15 @@ def top(request):
   }
 
 from django.views.generic.detail import DetailView
-from django.forms import ModelForm
-
-class RateForm(ModelForm):
-    class Meta:
-        model = Rate
-        exclude = ('user', 'restaurant')
-
-
 class RestView(DetailView):
     model = Rest
     template_name = 'rest_detail.html'
 
-from django.db import DatabaseError
-
-
-class JSONView(View):
-    
-    def post(self, request, *args, **kwargs):
-        
-        self.request = request
-        self.args = args
-        self.kwargs = kwargs
-
-        content = self.get_context()
-
-        return HttpResponse(dumps(content, ensure_ascii=False, separators=(',',':')),
-                mimetype="application/json")
-
-class RateCreate(JSONView):
-    form = RateForm
-
-    def get_context(self):
-
-        f = self.form(request.POST)
-        obj = f.save(commit=False)
-        obj.user = request.user
-        r = Rest.objects.get(id = kwargs['pk'])
-        obj.restaurant = r
-        err = f.errors
-
-        try:
-            f.save()
-            return {
-                    'status': 0,
-            }
-
-        except DatabaseError, e:
-            err = e
-        return {
-                'status': -1,
-                'error': err,
-        }
-
-class AjaxListView(JSONView):
+class AjaxListView(View):
 
     template = "index_content.html"
     per = 20.0
+    kwargs = {}
 
     def query_set(self):
         return Rest.objects.all()
@@ -153,9 +105,15 @@ class AjaxListView(JSONView):
         }
         return context
 
-    def get_context(self):
-        return self.get_page_context(self.request)
+    def post(self, request, *args, **kwargs):
 
+
+        self.kwargs = kwargs
+
+        content = self.get_page_context(request)
+
+        return HttpResponse(dumps(content, ensure_ascii=False, separators=(',',':')),
+                mimetype="application/json")
 
 class TopView(AjaxListView):
     template = "index_content.html"
@@ -184,5 +142,4 @@ class RatingsListView(AjaxListView):
 
     def query_set(self):
       return Rest.objects.get(id = self.kwargs['pk']).rate_set.all()
-
 
