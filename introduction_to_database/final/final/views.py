@@ -107,14 +107,21 @@ class RateCreate(JSONView):
         try:
             f.save()
             return {
-                    'status': 0,
+                'status': 0,
+                'message': '''<div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Well done!</strong> You have rated the restaurant!
+                    </div>'''
             }
 
         except DatabaseError, e:
             err = e
         return {
                 'status': -1,
-                'error': err,
+                'message': '''<div class="alert alert-danger alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Oops!</strong> You have rated the restaurant 10 times within 10 minutes!
+                    </div>''',
         }
 
 class AjaxListView(JSONView):
