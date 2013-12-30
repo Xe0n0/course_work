@@ -1,3 +1,12 @@
 {% extends 'base.html' %}
 {% block css %}<link href="{{ S }}/css/login.css" rel="stylesheet"/>{% endblock %}
-{% block container %}<form method="POST" role="form" class="form-signin"><h2 class="form-signin-heading">Please sign in</h2><input name="username" type="text" placeholder="Username" required="" autofocus="" class="form-control"/><input name="password" type="password" placeholder="Password" required="" class="form-control"/><label class="checkbox"><input type="checkbox" value="remember-me"/>Remember me</label><button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button></form>{% endblock %}
+{% block js %}<script>form_did_load = function(obj) {
+  if (obj.status == 0) {
+    window.location = '/';
+  }
+  else {
+    $('div#message').html(obj.message);
+  }
+}
+</script>{% endblock %}
+{% block container %}<div id="message"></div><ul class="nav nav-pills"><li class="active"><a href="#tab1" data-toggle="pill">Signin</a></li><li><a href="#tab2" data-toggle="pill">Signup</a></li></ul><div class="tab-content"><div id="tab1" class="active tab-pane"><form action="/login" method="POST" role="form" class="form-signin"><h2 class="form-signin-heading">Please sign in</h2><input name="username" type="text" placeholder="Username" required="" autofocus="" class="form-control"/><input name="password" type="password" placeholder="Password" required="" class="form-control"/><label class="checkbox"><input type="checkbox" value="remember-me"/>Remember me</label><button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button></form></div><div id="tab2" class="tab-pane"><form action="/signup" method="POST" role="form" class="form-signin"><h2 class="form-signin-heading">Please sign up</h2><input name="username" type="text" placeholder="Username" required="" autofocus="" class="form-control"/><input name="password" type="password" placeholder="Password" required="" class="form-control"/><input name="repeat-password" type="password" placeholder="Repeat Password" required="" class="form-control"/><input name="email" type="text" placeholder="Email" required="" autofocus="" class="form-control"/><input name="last_name" type="text" placeholder="Last name" required="" autofocus="" class="form-control"/><input name="first_name" type="text" placeholder="Last name" required="" autofocus="" class="form-control"/><button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button></form></div></div>{% endblock %}

@@ -11,7 +11,7 @@ from django.template import Context
 from django.views.generic import View, TemplateView
 
 
-from models import Rate, Restaurant as Rest
+from models import Rate, Restaurant as Rest, User
 
 def json_response(func):
     def inner(request=None, *args, **kwargs):
