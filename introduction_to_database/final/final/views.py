@@ -92,6 +92,20 @@ class JSONView(View):
         return HttpResponse(dumps(content, ensure_ascii=False, separators=(',',':')),
                 mimetype="application/json")
 
+class RateExport(View):
+    
+    def get(self, request, *args, **kwargs):
+
+        r = Rest.objects.get(id = kwargs['pk'])
+
+        context = {
+                'object': r,
+                'count': r.rate_set.all().count,
+                'rate_set': r.rate_set.all(),
+        }
+        return render_to_response('rest.xml', context,
+                context_instance=RequestContext(request), mimetype='application/xml')
+
 class RateCreate(JSONView):
     form = RateForm
 

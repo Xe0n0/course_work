@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Restaurant>
+  <RestaurantName>{{ object.name }}</RestaurantName>
+  <Info>
+    <BasicInfo>
+      <Location>
+        <Address>{{ object.location }}</Address>
+        <Landmark>{{ object.landmark }}</Landmark>
+      </Location>
+      <Phone>{{ object.phone }}</Phone>
+      <BusinessHours>{{ object.opentime }}</BusinessHours>
+    </BasicInfo>
+    <OtherInfo>
+      <Overall>
+        <Star>{{ object.overall.star }}</Star>
+        <Flavor>{{ object.overall.flavor }}</Flavor>
+        <Service>{{ object.overall.service }}</Service>
+        <Environment>{{ object.overall.environment }}</Environment>
+      </Overall>
+      <Comments>
+        <CommentNumber>{{ count }} </CommentNumber>
+        {% for c in rate_set %}
+        <Comment>
+          <Content>{{ c.comment }}</Content>
+          <Time>{{ c.datetime }}</Time>
+          <Star>1</Star>
+          <Flavor>4</Flavor>
+          <Service>4</Service>
+          <Environment>3</Environment>
+        </Comment>
+        {% endfor %}
+      </Comments>
+</OtherInfo>
+</Info> 
+</Restaurant>
