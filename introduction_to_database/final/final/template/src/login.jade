@@ -17,11 +17,12 @@ script.
 {% block container %}
 div#message
 
-ul.nav.nav-pills
-  li.active
-    a(href="#tab1", data-toggle="pill") Signin
-  li
-    a(href="#tab2", data-toggle="pill") Signup
+.tabs
+  ul.nav.nav-pills
+    li.active
+      a(href="#tab1", data-toggle="pill") Signin
+    li
+      a(href="#tab2", data-toggle="pill") Signup
 
 .tab-content
   .active.tab-pane#tab1
