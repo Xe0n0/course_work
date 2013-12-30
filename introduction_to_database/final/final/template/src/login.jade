@@ -37,7 +37,7 @@ div#message
         button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
 
   .tab-pane#tab2
-    form.form-signin(action='/signup', method='POST', role='form')
+    form.form-signin.async(action='/signup', method='POST', role='form')
         h2.form-signin-heading Please sign up
         input.form-control(name='username', type='text', placeholder='Username', required='', autofocus='')
         input.form-control(name='password', type='password', placeholder='Password', required='')
