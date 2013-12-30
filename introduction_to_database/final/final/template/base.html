@@ -44,8 +44,15 @@
 
             {% block nav %}
             {% endblock %}
-
           </ul>
+
+                {% if user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+            <li><a>Welcome, {{ user.username }}.</a><li>
+                <li><a href="/logout">注销</a></li>
+          </ul>
+                {% endif %}
+
         </div><!--/.nav-collapse -->
       </div>
     </div>
