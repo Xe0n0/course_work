@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from views import TopView, HotView, HotListView, NearbyView, RestView, \
-    RatingsListView, RateCreate, RateExport
+    RatingsListView, RateCreate, RateExport, UserCreate
 
 admin.autodiscover()
 
@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = patterns('',
     url(r'^$', 'final.views.home', name='home'),
     url(r'^login', 'final.views.login', name='login'),
+    url(r'^signup', UserCreate.as_view(), name='signup'),
     url(r'^eatings/top.json', TopView.as_view(), name='top'),
     url(r'^eatings/hot.json', HotListView.as_view()), 
     url(r'^hot/', login_required(HotView.as_view()), name='hot'),
