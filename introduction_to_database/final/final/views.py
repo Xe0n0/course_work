@@ -5,7 +5,7 @@ from django.shortcuts import *
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.template.loader import get_template
 from django.template import Context
 from django.views.generic import View, TemplateView
@@ -26,7 +26,6 @@ def json_response(func):
           mimetype="application/json", status=status_code)
     return inner
 
-@login_required
 def home(request):
     return render_to_response('index.html', {}, context_instance=RequestContext(request))
 
@@ -39,6 +38,12 @@ def login(request):
             return render_to_response('index.html', {}, context_instance=RequestContext(request))
 
     return render_to_response('login.html', {}, context_instance=RequestContext(request))
+
+def logout(request):
+    if request.user:
+        django_logout(request)
+    return HttpResponseRedirect('/')
+
 
 @json_response
 def top(request):

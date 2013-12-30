@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^$', 'final.views.home', name='home'),
     url(r'^login', 'final.views.login', name='login'),
     url(r'^signup', UserCreate.as_view(), name='signup'),
+    url(r'^logout', 'final.views.logout', name='logout'),
+
     url(r'^eatings/top.json', TopView.as_view(), name='top'),
     url(r'^eatings/hot.json', HotListView.as_view()), 
     url(r'^hot/', login_required(HotView.as_view()), name='hot'),
