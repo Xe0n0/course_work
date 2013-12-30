@@ -145,7 +145,7 @@ class RateCreate(JSONView):
                     </div>''',
         }
 
-class UserCreate(View):
+class UserCreate(JSONView):
 
     def get_context(self):
 
