@@ -66,6 +66,13 @@ def top(request):
 from django.views.generic.detail import DetailView
 from django.forms import ModelForm
 
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+
+    
+
 class RateForm(ModelForm):
     class Meta:
         model = Rate
@@ -137,6 +144,29 @@ class RateCreate(JSONView):
                     <strong>Oops!</strong> You have rated the restaurant 10 times within 10 minutes!
                     </div>''',
         }
+
+class UserCreate(View):
+
+    def get_context(self):
+
+        f = UserForm(self.request.POST)
+        try:
+            f.save()
+            return {
+                    'status': 0,
+                    'message': '',
+                    }
+        except:
+            pass
+
+        return {
+                'status': -1,
+                'message': '''<div class="alert alert-danger alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Oops!</strong> The username may have been used. Try again!
+                    </div>'''
+        }
+
 
 class AjaxListView(JSONView):
 
