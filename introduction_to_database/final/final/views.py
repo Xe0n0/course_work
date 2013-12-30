@@ -70,6 +70,7 @@ from django.forms import ModelForm
 class UserForm(ModelForm):
     class Meta:
         model = User
+        exclude = ('last_login', 'date_joined')
 
     
 
@@ -150,6 +151,15 @@ class UserCreate(JSONView):
     def get_context(self):
 
         u = UserForm(self.request.POST)
+        if not u.is_valid():
+            return {
+                'status': -1,
+                'message':
+                '''<div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Oops!</strong> {} Try again!
+                    </div>'''.format(u.errors),
+            }
         try:
             u.save()
             django_login(request, u)
