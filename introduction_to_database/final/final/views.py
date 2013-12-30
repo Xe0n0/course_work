@@ -160,6 +160,16 @@ class UserCreate(JSONView):
                     <strong>Oops!</strong> {} Try again!
                     </div>'''.format(u.errors),
             }
+        elif self.request.POST['password'] != self.request.POST.get('repeat-password', ''):
+            return {
+                'status': -1,
+                'message':
+                '''<div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Oops!</strong> {} Try again!
+                    </div>'''.format('''Passwords didn't match.'''),
+            }
+
         try:
             u.save()
             django_login(request, u)
