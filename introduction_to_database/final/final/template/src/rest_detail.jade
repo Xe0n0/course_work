@@ -14,15 +14,15 @@ script(src="{{ S }}js/index.js")
 script.
   form_did_load = function(obj) {
     if (obj.status == 0) {
-      pageClick(1, null, null);
+      pageClick(null, null, 1);
     }
-    else {
-    }
+    $('div#message').html(obj.message);
   }
 script(src="{{ S }}js/async_form.js")
 {% endblock %}
 
 {% block container %}
+h2 {{ object.name }}
 table.table.table-bordered
   +row({
     'Restaurant': 'name',
@@ -35,6 +35,12 @@ table.table.table-bordered
     'Environment': 'overall.environment',
     '地标': 'landmark',
     })
+  tr
+    td XML
+    td
+      a.btn.btn-info.btn-sm(href='xml/') Export
+
+div#message
 
 form#rate_form(action='rate/', method='POST', role='form')
       .form-group
@@ -72,11 +78,11 @@ form#rate_form(action='rate/', method='POST', role='form')
               option 2
               option 1
       .row
-        .col-md-10
+        .col-md-8
           .form-group
             textarea.form-control(name='comment', placeholder='I love this one!', autofocus='')
       .row
-        .col-md-5
+        .col-md-2
           .form-group
             button.btn.btn-lg.btn-primary.btn-block(type='submit') Rate Now
 
