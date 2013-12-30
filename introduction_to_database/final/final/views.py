@@ -154,7 +154,7 @@ class RateCreate(JSONView):
 class UserCreate(JSONView):
 
     def get_context(self):
-
+        request = self.request
         u = UserForm(self.request.POST)
         if not u.is_valid():
             return {
@@ -175,23 +175,33 @@ class UserCreate(JSONView):
                     </div>'''.format('''Passwords didn't match.'''),
             }
 
+        email = request.POST['email']
+        username = request.POST['username']
+        password = request.POST['password']
+        last_name = request.POST['last_name']
+        first_name = request.POST['first_name']
+        user = User.objects.create_user(username, email, password)
+        user.last_name = last_name
+        user.first_name = first_name
+        user.save()
         try:
-            u.save()
-            django_login(request, u)
-            return {
-                    'status': 0,
-                    'message': '',
-                    }
-        except:
             pass
-
-        return {
+        except:
+            return {
                 'status': -1,
                 'message': '''<div class="alert alert-danger alert-dismissable">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>Oops!</strong> The username may have been used. Try again!
                     </div>'''
-        }
+            }
+
+        user = authenticate(username = self.request.POST.get('username', ''),
+                password = self.request.POST.get('password', ''))
+        django_login(self.request, user)
+        return {
+                'status': 0,
+                'message': '',
+                }
 
 
 class AjaxListView(JSONView):
