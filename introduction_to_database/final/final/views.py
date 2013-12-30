@@ -149,9 +149,10 @@ class UserCreate(View):
 
     def get_context(self):
 
-        f = UserForm(self.request.POST)
+        u = UserForm(self.request.POST)
         try:
-            f.save()
+            u.save()
+            django_login(request, u)
             return {
                     'status': 0,
                     'message': '',
