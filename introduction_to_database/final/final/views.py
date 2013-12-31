@@ -263,17 +263,19 @@ class HotListView(AjaxListView):
         left join final_overall on restaurant_id = id
         where count > (select avg(count) from final_overall) order by count desc''')
 
-class NearbyView(AjaxListView):
-    template = "nearby.html"
+class NearbyView(TemplateView):
+    template_name = "nearby.html"
 
 class NearbyListView(AjaxListView):
-    tempalte = "nearby_content.html"
+    tempalte = "index_content.html"
 
     def query_set(self):
         obj = Rest.objects.get(id = self.kwargs['pk'])
-
+        print >> sys.stderr, self.kwargs['distance'], '''select * from final_restaurant
+            where sqrt(pow(x - {}, 2) + pow(y - {}, 2)) < {}'''.format(obj.x, obj.y, self.kwargs['distance'])
+            
         return Rest.objects.raw('''select * from final_restaurant
-            where SQRT(POW(x - {}, 2) + POW(y - {}, 2)) < {}'''.format(obj.x, obj.y, self.kwargs['distance']))
+            where sqrt(pow(x - {}, 2) + pow(y - {}, 2)) < {}'''.format(obj.x, obj.y, self.kwargs['distance']))
 
 
 class RatingsListView(AjaxListView):
