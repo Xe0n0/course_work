@@ -124,9 +124,6 @@ INSTALLED_APPS = (
     'suit',
     'final',
     'south',
-    'filer',
-    'mptt',
-    'easy_thumbnails',
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
