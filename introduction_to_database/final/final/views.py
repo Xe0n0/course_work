@@ -264,7 +264,17 @@ class HotListView(AjaxListView):
         where count > (select avg(count) from final_overall) order by count desc''')
 
 class NearbyView(AjaxListView):
-    pass
+    template = "nearby.html"
+
+class NearbyListView(AjaxListView):
+    tempalte = "nearby_content.html"
+
+    def query_set(self):
+        obj = Rest.objects.get(id = self.kwargs['pk'])
+
+        return Rest.objects.raw('''select * from final_restaurant
+            where SQRT(POW(x - {}, 2) + POW(y - {}, 2)) < {}'''.format(obj.x, obj.y, self.kwargs['distance']))
+
 
 class RatingsListView(AjaxListView):
     template = "ratings_content.html"
