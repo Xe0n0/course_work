@@ -29,6 +29,8 @@ class Restaurant(models.Model):
     landmark = models.CharField(max_length=255, blank=True)
     phone = models.CharField(max_length=75, blank=True)
     opentime = models.CharField(max_length=75, blank=False)
+    x = models.IntegerField()
+    y = models.IntegerField()
 
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
