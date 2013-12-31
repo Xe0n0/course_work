@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block nav %}
+li#nearby
+  a Nearby
+
+{% endblock %}
+{% block json_url %}
+script.
+  var json_url = '100000/json';
+  $('li#nearby').addClass('active');
+{% endblock %}
