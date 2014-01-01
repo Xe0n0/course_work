@@ -44,30 +44,6 @@ def logout(request):
         django_logout(request)
     return HttpResponseRedirect('/')
 
-
-@json_response
-def top(request):
-
-  array = Rest.objects.all()
-
-  per = 20
-
-  pagecount = array.count() / per
-
-  pageid = request.POST.get('pageid', '1')
-
-  offset = int(pageid) * 20
-
-  context = { 'array': array[offset - 20 : offset] }
-    
-  t = get_template("index_content.html")
-  content = t.render(Context(context))
-  
-  return {
-      'content': content,
-      'pagecount': pagecount,
-  }
-
 from django.views.generic.detail import DetailView
 from django.forms import ModelForm
 
