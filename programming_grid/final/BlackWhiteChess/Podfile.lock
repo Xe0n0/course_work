@@ -1,0 +1,13 @@
+PODS:
+  - JTTargetActionBlock (1.0.0)
+  - POViewFrameBuilder (HEAD based on 1.0.2)
+
+DEPENDENCIES:
+  - JTTargetActionBlock (~> 1.0.0)
+  - POViewFrameBuilder (HEAD)
+
+SPEC CHECKSUMS:
+  JTTargetActionBlock: 3d6e5ecded7f8273ad006029444d285b58e016ea
+  POViewFrameBuilder: e64d2b7458232cae902ea7de68597b12de8d0399
+
+COCOAPODS: 0.29.0
