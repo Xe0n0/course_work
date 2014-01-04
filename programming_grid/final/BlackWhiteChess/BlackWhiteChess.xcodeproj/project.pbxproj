@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2039679D00F94D3E9188D25D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A39663A2DF8F472A887A89F7 /* libPods.a */; };
 		4154F7A618783CC70014BF68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4154F7A518783CC70014BF68 /* Foundation.framework */; };
 		4154F7A818783CC70014BF68 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4154F7A718783CC70014BF68 /* CoreGraphics.framework */; };
 		4154F7AA18783CC70014BF68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4154F7A918783CC70014BF68 /* UIKit.framework */; };
@@ -21,6 +22,7 @@
 		4154F7C718783CC70014BF68 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4154F7A918783CC70014BF68 /* UIKit.framework */; };
 		4154F7CF18783CC70014BF68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7CD18783CC70014BF68 /* InfoPlist.strings */; };
 		4154F7D118783CC70014BF68 /* BlackWhiteChessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7D018783CC70014BF68 /* BlackWhiteChessTests.m */; };
+		4154F7DF187846E30014BF68 /* XNChessButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7DE187846E30014BF68 /* XNChessButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		4154F7CC18783CC70014BF68 /* BlackWhiteChessTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlackWhiteChessTests-Info.plist"; sourceTree = "<group>"; };
 		4154F7CE18783CC70014BF68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4154F7D018783CC70014BF68 /* BlackWhiteChessTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackWhiteChessTests.m; sourceTree = "<group>"; };
+		4154F7DD187846E30014BF68 /* XNChessButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNChessButton.h; sourceTree = "<group>"; };
+		4154F7DE187846E30014BF68 /* XNChessButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNChessButton.m; sourceTree = "<group>"; };
+		A39663A2DF8F472A887A89F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8829046B48440FBA749E5C1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 				4154F7A818783CC70014BF68 /* CoreGraphics.framework in Frameworks */,
 				4154F7AA18783CC70014BF68 /* UIKit.framework in Frameworks */,
 				4154F7A618783CC70014BF68 /* Foundation.framework in Frameworks */,
+				2039679D00F94D3E9188D25D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +93,7 @@
 				4154F7CA18783CC70014BF68 /* BlackWhiteChessTests */,
 				4154F7A418783CC70014BF68 /* Frameworks */,
 				4154F7A318783CC70014BF68 /* Products */,
+				C8829046B48440FBA749E5C1 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +113,7 @@
 				4154F7A718783CC70014BF68 /* CoreGraphics.framework */,
 				4154F7A918783CC70014BF68 /* UIKit.framework */,
 				4154F7C418783CC70014BF68 /* XCTest.framework */,
+				A39663A2DF8F472A887A89F7 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +126,8 @@
 				4154F7B718783CC70014BF68 /* Main.storyboard */,
 				4154F7BA18783CC70014BF68 /* XNViewController.h */,
 				4154F7BB18783CC70014BF68 /* XNViewController.m */,
+				4154F7DD187846E30014BF68 /* XNChessButton.h */,
+				4154F7DE187846E30014BF68 /* XNChessButton.m */,
 				4154F7BD18783CC70014BF68 /* Images.xcassets */,
 				4154F7AC18783CC70014BF68 /* Supporting Files */,
 			);
@@ -159,9 +170,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4154F7D418783CC70014BF68 /* Build configuration list for PBXNativeTarget "BlackWhiteChess" */;
 			buildPhases = (
+				037D448FD2F6457B9070A18C /* Check Pods Manifest.lock */,
 				4154F79E18783CC70014BF68 /* Sources */,
 				4154F79F18783CC70014BF68 /* Frameworks */,
 				4154F7A018783CC70014BF68 /* Resources */,
+				BE06EE101CF94013B2D34022 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,6 +258,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		037D448FD2F6457B9070A18C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BE06EE101CF94013B2D34022 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4154F79E18783CC70014BF68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -252,6 +298,7 @@
 			files = (
 				4154F7B618783CC70014BF68 /* XNAppDelegate.m in Sources */,
 				4154F7BC18783CC70014BF68 /* XNViewController.m in Sources */,
+				4154F7DF187846E30014BF68 /* XNChessButton.m in Sources */,
 				4154F7B218783CC70014BF68 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +423,7 @@
 		};
 		4154F7D518783CC70014BF68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8829046B48440FBA749E5C1 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -389,6 +437,7 @@
 		};
 		4154F7D618783CC70014BF68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8829046B48440FBA749E5C1 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -461,6 +510,7 @@
 				4154F7D618783CC70014BF68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4154F7D718783CC70014BF68 /* Build configuration list for PBXNativeTarget "BlackWhiteChessTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +519,7 @@
 				4154F7D918783CC70014BF68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
