@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface XNChessButton : UIButton
-
+@property (assign, nonatomic) int x;
+@property (assign, nonatomic) int y;
 @end

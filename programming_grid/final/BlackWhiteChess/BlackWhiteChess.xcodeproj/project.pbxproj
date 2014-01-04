@@ -15,7 +15,7 @@
 		4154F7B218783CC70014BF68 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7B118783CC70014BF68 /* main.m */; };
 		4154F7B618783CC70014BF68 /* XNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7B518783CC70014BF68 /* XNAppDelegate.m */; };
 		4154F7B918783CC70014BF68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7B718783CC70014BF68 /* Main.storyboard */; };
-		4154F7BC18783CC70014BF68 /* XNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7BB18783CC70014BF68 /* XNViewController.m */; };
+		4154F7BC18783CC70014BF68 /* XNViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7BB18783CC70014BF68 /* XNViewController.mm */; };
 		4154F7BE18783CC70014BF68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7BD18783CC70014BF68 /* Images.xcassets */; };
 		4154F7C518783CC70014BF68 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4154F7C418783CC70014BF68 /* XCTest.framework */; };
 		4154F7C618783CC70014BF68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4154F7A518783CC70014BF68 /* Foundation.framework */; };
@@ -23,6 +23,7 @@
 		4154F7CF18783CC70014BF68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7CD18783CC70014BF68 /* InfoPlist.strings */; };
 		4154F7D118783CC70014BF68 /* BlackWhiteChessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7D018783CC70014BF68 /* BlackWhiteChessTests.m */; };
 		4154F7DF187846E30014BF68 /* XNChessButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7DE187846E30014BF68 /* XNChessButton.m */; };
+		4154F7E218784AD40014BF68 /* ChessEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7E118784AD40014BF68 /* ChessEngine.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +49,7 @@
 		4154F7B518783CC70014BF68 /* XNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNAppDelegate.m; sourceTree = "<group>"; };
 		4154F7B818783CC70014BF68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4154F7BA18783CC70014BF68 /* XNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNViewController.h; sourceTree = "<group>"; };
-		4154F7BB18783CC70014BF68 /* XNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNViewController.m; sourceTree = "<group>"; };
+		4154F7BB18783CC70014BF68 /* XNViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XNViewController.mm; sourceTree = "<group>"; };
 		4154F7BD18783CC70014BF68 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4154F7C318783CC70014BF68 /* BlackWhiteChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlackWhiteChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4154F7C418783CC70014BF68 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -57,6 +58,8 @@
 		4154F7D018783CC70014BF68 /* BlackWhiteChessTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlackWhiteChessTests.m; sourceTree = "<group>"; };
 		4154F7DD187846E30014BF68 /* XNChessButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNChessButton.h; sourceTree = "<group>"; };
 		4154F7DE187846E30014BF68 /* XNChessButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNChessButton.m; sourceTree = "<group>"; };
+		4154F7E018784AC70014BF68 /* ChessEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessEngine.h; sourceTree = "<group>"; };
+		4154F7E118784AD40014BF68 /* ChessEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChessEngine.mm; sourceTree = "<group>"; };
 		A39663A2DF8F472A887A89F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8829046B48440FBA749E5C1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,11 +124,13 @@
 		4154F7AB18783CC70014BF68 /* BlackWhiteChess */ = {
 			isa = PBXGroup;
 			children = (
+				4154F7E018784AC70014BF68 /* ChessEngine.h */,
+				4154F7E118784AD40014BF68 /* ChessEngine.mm */,
 				4154F7B418783CC70014BF68 /* XNAppDelegate.h */,
 				4154F7B518783CC70014BF68 /* XNAppDelegate.m */,
 				4154F7B718783CC70014BF68 /* Main.storyboard */,
 				4154F7BA18783CC70014BF68 /* XNViewController.h */,
-				4154F7BB18783CC70014BF68 /* XNViewController.m */,
+				4154F7BB18783CC70014BF68 /* XNViewController.mm */,
 				4154F7DD187846E30014BF68 /* XNChessButton.h */,
 				4154F7DE187846E30014BF68 /* XNChessButton.m */,
 				4154F7BD18783CC70014BF68 /* Images.xcassets */,
@@ -297,8 +302,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4154F7B618783CC70014BF68 /* XNAppDelegate.m in Sources */,
-				4154F7BC18783CC70014BF68 /* XNViewController.m in Sources */,
+				4154F7BC18783CC70014BF68 /* XNViewController.mm in Sources */,
 				4154F7DF187846E30014BF68 /* XNChessButton.m in Sources */,
+				4154F7E218784AD40014BF68 /* ChessEngine.mm in Sources */,
 				4154F7B218783CC70014BF68 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlackWhiteChess/BlackWhiteChess-Prefix.pch";
 				INFOPLIST_FILE = "BlackWhiteChess/BlackWhiteChess-Info.plist";
@@ -441,6 +448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlackWhiteChess/BlackWhiteChess-Prefix.pch";
 				INFOPLIST_FILE = "BlackWhiteChess/BlackWhiteChess-Info.plist";
