@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface XNViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *labelInfo;
 
+@property (strong, nonatomic) IBOutlet UIButton *buttonNewGame;
 @end

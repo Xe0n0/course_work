@@ -19,6 +19,12 @@
 
 @implementation XNViewController
 
+- (void)startGame
+{
+    self.engine->init();
+    [self updateView];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -26,8 +32,10 @@
     self.color = CEBlack;
     self.engine = new ChessEngine();
     self.arrayBtns = [NSMutableArray array];
-    int base_x = 10;
-    int base_y = 40;
+    int base_x = 20;
+    int base_y = 80;
+    
+    __weak __block XNViewController *weak_self = self;
     
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
@@ -41,16 +49,21 @@
             btn.x = i;
             btn.y = j;
             
-            __weak __block XNViewController *weak_self = self;
             
             [btn addEventHandler:^(XNChessButton *sender, UIEvent *event) {
                 
                 if (weak_self.engine->tap(sender.x, sender.y, weak_self.color)) {
                     
-                    [weak_self updateColors];
+                    [weak_self updateView];
                     //weak_self.color = !weak_self.color;
-                    weak_self.engine->play(!weak_self.color);
-                    [weak_self updateColors];
+                    double delayInSeconds = 0.2;
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                        if (weak_self.engine->play(!weak_self.color))
+                          [weak_self updateView];
+                        else
+                          [weak_self updateResult];
+                    });
                 }
                 
             } forControlEvent:UIControlEventTouchUpInside];
@@ -59,13 +72,30 @@
             [self.arrayBtns addObject:btn];
         }
     }
-    self.engine->init();
     
-    [self updateColors];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self.buttonNewGame addEventHandler:^(id sender, UIEvent *event) {
+        [weak_self startGame];
+    } forControlEvent:UIControlEventTouchUpInside];
+    
+    [self startGame];
 }
 
-- (void)updateColors
+- (void)updateResult
+{
+  
+  NSString *r;
+  
+      if (self.engine->scoreBlack > self.engine->scoreWhite)
+        r = @"You Win!";
+      else if (self.engine->scoreBlack < self.engine->scoreWhite)
+        r = @"You Lose!";
+      else
+        r = @"Draw!";
+  
+}
+
+
+- (void)updateView
 {
     [self.arrayBtns enumerateObjectsUsingBlock:^(XNChessButton* obj, NSUInteger idx, BOOL *stop) {
         
@@ -84,6 +114,14 @@
                 break;
         }
     }];
+    
+    
+    self.labelInfo.text = [NSString stringWithFormat:@"Score Black: %d\nScore White: %d",
+                           self.engine->scoreBlack, self.engine->scoreWhite];
+  
+  if (self.engine->empty_slot == 0)
+      [self updateResult];
+  
 }
 
 - (void)didReceiveMemoryWarning

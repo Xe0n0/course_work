@@ -14,6 +14,7 @@
 #include <utility>
 
 void ChessEngine::init() {
+  
   table.clear();
   table.resize(8, std::vector<int>(8, CEEmpty));
 
@@ -21,7 +22,34 @@ void ChessEngine::init() {
   table[3][4] = CEBlack;
   table[4][3] = CEBlack;
   table[4][4] = CEWhite;
+    
+  scoreWhite = 2;
+  scoreBlack = 2;
 
+}
+
+void ChessEngine::collectScore()
+{
+  
+  scoreWhite = 0;
+  scoreBlack = 0;
+  empty_slot = 0;
+  
+  for (auto v : table) {
+    for (auto c : v) {
+      switch (c) {
+        case CEBlack:
+          scoreBlack++;
+          break;
+        case CEWhite:
+          scoreWhite++;
+          break;
+        default:
+          empty_slot++;
+          break;
+      }
+    }
+  }
 }
 
 bool ChessEngine::play(int color)
@@ -111,5 +139,7 @@ bool ChessEngine::tap(int x, int y, int color) {
   can_flip |= search(-1, 0);
 
   if (!can_flip) table[x][y] = CEEmpty;
+  else
+    collectScore();
   return can_flip;
 }
