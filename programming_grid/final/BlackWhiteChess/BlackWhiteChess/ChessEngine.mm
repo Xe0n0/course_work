@@ -10,6 +10,8 @@
 #include <functional>
 #include <cmath>
 #include <iostream>
+#include <algorithm>
+#include <utility>
 
 void ChessEngine::init() {
   table.clear();
@@ -20,6 +22,31 @@ void ChessEngine::init() {
   table[4][3] = CEBlack;
   table[4][4] = CEWhite;
 
+}
+
+bool ChessEngine::play(int color)
+{
+    
+    std::vector<std::pair<int, int> > v;
+    for (int i = 0; i < 8; ++i)
+        for (int j = 0; j < 8; ++j)
+        {
+            if (table[i][j] != CEEmpty) {
+                continue;
+            }
+            v.push_back(std::make_pair(i, j));
+        }
+    
+    std::random_shuffle(v.begin(), v.end());
+    
+    for (auto p : v)
+    {
+        if (tap(p.first, p.second, color)) {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 
@@ -34,7 +61,6 @@ bool ChessEngine::tap(int x, int y, int color) {
   std::function<bool(int, int)> search = [&](int dx, int dy){
 
       bool found = false;
-      bool has_other = false;
 
       int i = x + dx;
       int j = y + dy;
@@ -44,44 +70,29 @@ bool ChessEngine::tap(int x, int y, int color) {
     while (i >= 0 && i < 8 &&
           j >= 0 && j < 8)
     {
-
         if (table[i][j] == CEEmpty) {
-            
-            if (last == table[x][y] and
-              (abs(i - x) > 1 or abs(j - y) > 1)
-                and has_other) {
-                
-              found = true;
-            }
-                
-            
-            
             break;
         }
-        else if (table[i][j] != table[x][y]) {
+
+        if (table[i][j] == color) {
             
-            has_other = true;
+            if (last != color and
+              (abs(i - x) > 1 or abs(j - y) > 1)) {
+                
+              found = true;
+              
+                int k = i, l = j;
+                while (k != x or l != y) {
+                    
+                    table[k][l] = color;
+                    k -= dx;
+                    l -= dy;
+                }
+            }
+                
         }
         
         last = table[i][j];
-      i += dx;
-      j += dy;
-    }
-
-    i = x + dx;
-    j = y + dy;
-      
-    if (found)
-        
-    while (i >= 0 && i < 8 &&
-          j >= 0 && j < 8)
-    {
-
-
-      if (table[i][j] == CEEmpty)
-        break;
-
-      table[i][j] = table[x][y];
       i += dx;
       j += dy;
     }

@@ -48,7 +48,9 @@
                 if (weak_self.engine->tap(sender.x, sender.y, weak_self.color)) {
                     
                     [weak_self updateColors];
-                    weak_self.color = !weak_self.color;
+                    //weak_self.color = !weak_self.color;
+                    weak_self.engine->play(!weak_self.color);
+                    [weak_self updateColors];
                 }
                 
             } forControlEvent:UIControlEventTouchUpInside];

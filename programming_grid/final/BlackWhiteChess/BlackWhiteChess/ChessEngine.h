@@ -20,8 +20,10 @@ class ChessEngine {
 public:
     void init();
     bool tap(int x, int y, int color);
+    bool play(int color);
     std::vector<std::vector<int> > table;
-    
+    int scoreBlack;
+    int scoreWhite;
 };
 
 #endif
