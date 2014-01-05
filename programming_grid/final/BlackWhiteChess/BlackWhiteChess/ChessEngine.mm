@@ -25,6 +25,7 @@ void ChessEngine::init() {
     
   scoreWhite = 2;
   scoreBlack = 2;
+  collectScore();
 
 }
 
