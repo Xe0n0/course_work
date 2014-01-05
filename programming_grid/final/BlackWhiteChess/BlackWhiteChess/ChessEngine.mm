@@ -36,6 +36,7 @@ void ChessEngine::collectScore()
   scoreBlack = 0;
   empty_slot = 0;
   
+  //iterate over all color data in table.
   for (auto v : table) {
     for (auto c : v) {
       switch (c) {
@@ -55,7 +56,8 @@ void ChessEngine::collectScore()
 
 bool ChessEngine::play(int color)
 {
-    
+  
+    //save all possible place to place piece;
     std::vector<std::pair<int, int> > v;
     for (int i = 0; i < 8; ++i)
         for (int j = 0; j < 8; ++j)
@@ -65,7 +67,8 @@ bool ChessEngine::play(int color)
             }
             v.push_back(std::make_pair(i, j));
         }
-    
+    //randomize the sequence to try, then iterate
+    //until find one place to go
     std::random_shuffle(v.begin(), v.end());
     
     for (auto p : v)
@@ -87,6 +90,9 @@ bool ChessEngine::tap(int x, int y, int color) {
   bool can_flip = false;
   
   
+  //search from current position (x, y) with direction defined
+  //by (dx, dy) and return if can flip on this direction
+  //return true if can flip and flip required pieces
   std::function<bool(int, int)> search = [&](int dx, int dy){
 
       bool found = false;
@@ -99,17 +105,23 @@ bool ChessEngine::tap(int x, int y, int color) {
     while (i >= 0 && i < 8 &&
           j >= 0 && j < 8)
     {
+      
+        //stop when meet empty slot
         if (table[i][j] == CEEmpty) {
             break;
         }
 
+        //meet another with same color
         if (table[i][j] == color) {
-            
+          
+          
+            //last one is other color
             if (last != color and
               (abs(i - x) > 1 or abs(j - y) > 1)) {
                 
               found = true;
               
+                //go back to (x, y) and set piece on path
                 int k = i, l = j;
                 while (k != x or l != y) {
                     
@@ -122,8 +134,8 @@ bool ChessEngine::tap(int x, int y, int color) {
         }
         
         last = table[i][j];
-      i += dx;
-      j += dy;
+        i += dx;
+        j += dy;
     }
 
     return found;
@@ -141,6 +153,7 @@ bool ChessEngine::tap(int x, int y, int color) {
 
   if (!can_flip) table[x][y] = CEEmpty;
   else
-    collectScore();
+    collectScore(); //re-calculate socores and empty slots
+  
   return can_flip;
 }
