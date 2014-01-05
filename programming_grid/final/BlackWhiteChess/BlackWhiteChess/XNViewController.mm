@@ -28,41 +28,54 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+  
+  int base_y = 50;
+  int base_x = 0;
+    UIImageView *imv_bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ChessBoard.png"]];
+  [imv_bg.po_frameBuilder moveWithOffsetY:base_y];
+  
+    [self.view addSubview:imv_bg];
+  
     self.color = CEBlack;
     self.engine = new ChessEngine();
     self.arrayBtns = [NSMutableArray array];
-    int base_x = 20;
-    int base_y = 80;
+  
     
     __weak __block XNViewController *weak_self = self;
-    
+  
+    //add buttons to view
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
             
             XNChessButton *btn = [XNChessButton buttonWithType:UIButtonTypeRoundedRect];
-            btn.frame = CGRectMake(base_x, base_y, 35, 35);
-            [btn.po_frameBuilder moveWithOffsetX:i * 35 offsetY:j * 35];
-            
-            btn.layer.cornerRadius = btn.frame.size.width / 2;
-            
+            btn.frame = CGRectMake(base_x, base_y, 40, 40);
+          [btn.po_frameBuilder moveWithOffsetX:i * 40 offsetY:j * 40];
+          btn.backgroundColor = [UIColor clearColor];
+          
+          
+            //set button information
             btn.x = i;
             btn.y = j;
             
-            
+            //add button click call back
             [btn addEventHandler:^(XNChessButton *sender, UIEvent *event) {
-                
+              
+                //use game engine to judge if we can tap
                 if (weak_self.engine->tap(sender.x, sender.y, weak_self.color)) {
-                    
+                  
+                    //update buttons
                     [weak_self updateView];
-                    //weak_self.color = !weak_self.color;
+                  
+                    //let engine play next round
                     double delayInSeconds = 0.2;
                     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        if (weak_self.engine->play(!weak_self.color))
+                      if (weak_self.engine->play(!weak_self.color)) {
                           [weak_self updateView];
-                        else
+                      }
+                      else {
                           [weak_self updateResult];
+                      }
                     });
                 }
                 
@@ -91,6 +104,7 @@
         r = @"You Lose!";
       else
         r = @"Draw!";
+  self.labelInfo.text = r;
   
 }
 
@@ -101,13 +115,13 @@
         
         switch (self.engine->table[obj.x][obj.y]) {
             case CEBlack:
-                obj.backgroundColor = [UIColor blackColor];
+                [obj setBackgroundImage:[UIImage imageNamed:@"Blue.png"] forState:UIControlStateNormal];
                 break;
             case CEWhite:
-                obj.backgroundColor = [UIColor whiteColor];
+                [obj setBackgroundImage:[UIImage imageNamed:@"Green.png"] forState:UIControlStateNormal];
                 break;
             case CEEmpty:
-                obj.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.2];
+                [obj setBackgroundImage:nil forState:UIControlStateNormal];
                 break;
                 
             default:

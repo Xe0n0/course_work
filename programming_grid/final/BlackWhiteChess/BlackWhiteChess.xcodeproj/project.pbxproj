@@ -24,6 +24,12 @@
 		4154F7D118783CC70014BF68 /* BlackWhiteChessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7D018783CC70014BF68 /* BlackWhiteChessTests.m */; };
 		4154F7DF187846E30014BF68 /* XNChessButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7DE187846E30014BF68 /* XNChessButton.m */; };
 		4154F7E218784AD40014BF68 /* ChessEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4154F7E118784AD40014BF68 /* ChessEngine.mm */; };
+		4154F7EA187927350014BF68 /* ChessBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7E7187927350014BF68 /* ChessBoard.png */; };
+		4154F7EB187927350014BF68 /* ChessBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7E8187927350014BF68 /* ChessBoard@2x.png */; };
+		4154F7F818792B7A0014BF68 /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7F418792B7A0014BF68 /* Blue.png */; };
+		4154F7F918792B7A0014BF68 /* Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7F518792B7A0014BF68 /* Blue@2x.png */; };
+		4154F7FA18792B7A0014BF68 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7F618792B7A0014BF68 /* Green.png */; };
+		4154F7FB18792B7A0014BF68 /* Green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4154F7F718792B7A0014BF68 /* Green@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +66,12 @@
 		4154F7DE187846E30014BF68 /* XNChessButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNChessButton.m; sourceTree = "<group>"; };
 		4154F7E018784AC70014BF68 /* ChessEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessEngine.h; sourceTree = "<group>"; };
 		4154F7E118784AD40014BF68 /* ChessEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChessEngine.mm; sourceTree = "<group>"; };
+		4154F7E7187927350014BF68 /* ChessBoard.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChessBoard.png; sourceTree = "<group>"; };
+		4154F7E8187927350014BF68 /* ChessBoard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChessBoard@2x.png"; sourceTree = "<group>"; };
+		4154F7F418792B7A0014BF68 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue.png; sourceTree = "<group>"; };
+		4154F7F518792B7A0014BF68 /* Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@2x.png"; sourceTree = "<group>"; };
+		4154F7F618792B7A0014BF68 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
+		4154F7F718792B7A0014BF68 /* Green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green@2x.png"; sourceTree = "<group>"; };
 		A39663A2DF8F472A887A89F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8829046B48440FBA749E5C1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +136,7 @@
 		4154F7AB18783CC70014BF68 /* BlackWhiteChess */ = {
 			isa = PBXGroup;
 			children = (
+				4154F7E9187927350014BF68 /* Resource */,
 				4154F7E018784AC70014BF68 /* ChessEngine.h */,
 				4154F7E118784AD40014BF68 /* ChessEngine.mm */,
 				4154F7B418783CC70014BF68 /* XNAppDelegate.h */,
@@ -166,6 +179,20 @@
 				4154F7CD18783CC70014BF68 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4154F7E9187927350014BF68 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4154F7F418792B7A0014BF68 /* Blue.png */,
+				4154F7F518792B7A0014BF68 /* Blue@2x.png */,
+				4154F7F618792B7A0014BF68 /* Green.png */,
+				4154F7F718792B7A0014BF68 /* Green@2x.png */,
+				4154F7E7187927350014BF68 /* ChessBoard.png */,
+				4154F7E8187927350014BF68 /* ChessBoard@2x.png */,
+			);
+			name = Resource;
+			path = ../Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,7 +276,13 @@
 			files = (
 				4154F7BE18783CC70014BF68 /* Images.xcassets in Resources */,
 				4154F7B018783CC70014BF68 /* InfoPlist.strings in Resources */,
+				4154F7FB18792B7A0014BF68 /* Green@2x.png in Resources */,
+				4154F7EB187927350014BF68 /* ChessBoard@2x.png in Resources */,
+				4154F7F818792B7A0014BF68 /* Blue.png in Resources */,
+				4154F7F918792B7A0014BF68 /* Blue@2x.png in Resources */,
+				4154F7FA18792B7A0014BF68 /* Green.png in Resources */,
 				4154F7B918783CC70014BF68 /* Main.storyboard in Resources */,
+				4154F7EA187927350014BF68 /* ChessBoard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
